@@ -4,9 +4,9 @@ const { menu: menuRef, body: bodyRef, toggleInput: toggleInputRef } = refs;
 import menuItems from "../data/menu.json";
 
 import menuTemplate from "../templates/menu.hbs";
-
+// Call hbs function that returns the finished markup
 let menuMarkup = menuTemplate(menuItems);
-
+// Adds menu markup to the page
 menuRef.innerHTML = menuMarkup;
 
 const Theme = {

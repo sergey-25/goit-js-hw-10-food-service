@@ -8,9 +8,9 @@ module.exports = (env) => ({
       {
         test: /\.css$/,
         use: [
-          MiniCssExtractPlugin.loader, 
-          "css-loader", 
-          "postcss-loader", 
+          MiniCssExtractPlugin.loader, // вытянет из js
+          "css-loader", // добавит все в js
+          "postcss-loader", // добавляет автопрефиксы
         ],
       },
     ],

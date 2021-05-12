@@ -1,5 +1,2 @@
-import './styles.scss';
-
+import "./styles/styles.css";
 import "./js/menu.js";
-
-console.log(sumNumbers(2,3));

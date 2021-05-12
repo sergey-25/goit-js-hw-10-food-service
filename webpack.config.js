@@ -4,18 +4,18 @@ const { merge } = require("webpack-merge");
 const FriendlyErrorsWebpackPlugin = require("friendly-errors-webpack-plugin");
 const WebpackBar = require("webpackbar");
 
-
+// console.log("DIRNAME", __dirname); // глобальная переменная, содержащая абсолютный путь к файлу
 const loadModeConfig = (env) =>
   require(`./build-utils/${env.mode}.config`)(env);
-
+// экспорт объекта настроек
 module.exports = (env) =>
   merge(
     {
       mode: "development",
       context: path.resolve(__dirname, "src"),
-      
+      // 1. точка входа - откуда строить дерево зависимостей
       entry: "./index.js",
-      
+      // 2. куда положить результирующий бандл
       output: {
         path: path.resolve(__dirname, "dist"),
         filename: "[name].bundle.js",
@@ -23,12 +23,12 @@ module.exports = (env) =>
       devServer: {
         stats: "errors-only",
       },
-     
+      // 3. загрузчики (loaders)
       module: {
         rules: [
           {
-            test: /\.js$/, 
-            exclude: /node_modules/, 
+            test: /\.js$/, // регулярное выражение
+            exclude: /node_modules/, // через указ папку свойства не прогонять
             use: ["babel-loader"],
           },
           {
@@ -52,7 +52,7 @@ module.exports = (env) =>
             use: ["handlebars-loader"],
           },
         ],
-        
+        // плагины применяются к результирующему бандлу
       },
       plugins: [
         new CleanWebpackPlugin(),
